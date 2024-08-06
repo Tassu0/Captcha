@@ -1,0 +1,73 @@
+from tkinter import *
+from tkinter import *
+from random import randint 
+import tkinter.messagebox as tm
+class Capctha:
+def main(sf): # To prevent crashing of the GUI application 
+try:
+sf.scr.destroy() 
+sf.scr = Tk()
+except:
+try:
+sf.scr = Tk() 
+except:
+pass
+sf.scr.geometry("1366x768") # First Page 
+sf.scr.title("Login page")
+sf.lab = Button(sf.scr, text="Click Here to Login", command=lambda: sf.login(
+), cursor="hand2", bd=10, font=("cooper black", 30, 'bold'), fg="white", bg="#0b1335") 
+sf.lab.place(x=450, y=300)
+sf.scr.mainloop()
+def login(sf): # Main Page 
+sf.scr.destroy()
+sf.scr = Tk() 
+sf.scr.geometry("1366x768") 
+sf.scr.title("Login")
+sf.lab1 = Label(sf.scr, text="Login Details", 
+font=("cooper black", 40))
+sf.lab1.place(x=530, y=100)
+sf.lab2 = Label(sf.scr, text="Username", font=("cooper black", 22)) 
+sf.lab2.place(x=300, y=250)
+sf.lab3 = Label(sf.scr, text="Password", font=("cooper black", 22)) 
+sf.lab3.place(x=300, y=325)
+sf.lab4 = Label(sf.scr, text="Captcha", font=("cooper black", 22)) 
+sf.lab4.place(x=300, y=400)
+sf.lab5 = Label(sf.scr, text="Enter Captcha", 
+font=("cooper black", 22))
+sf.lab5.place(x=300, y=465) 
+global u
+u = IntVar() 
+global p
+p = IntVar()
+x = randint(100, 1000) 
+y = randint(100, 1000) 
+global z
+z = x+y 
+global v
+v = IntVar()
+sf.user = Entry(sf.scr, textvariable=u, bg="white", font=( 
+"cooper black", 22), bd=6, justify='center')
+sf.user.place(x=600, y=250)
+sf.passw = Entry(sf.scr, textvariable=p, bg="white", font=( 
+"cooper black", 22), bd=6, justify='center',show='*')
+sf.passw.place(x=600, y=325)
+sf.cap = Entry(sf.scr, bg="white", font=( 
+"cooper black", 22), bd=6, justify='center')
+sf.cap.place(x=600, y=400) 
+sf.cap.insert(0, (x, '+', y))
+sf.cap1 = Entry(sf.scr, textvariable=v, bg="white", font=( 
+"cooper black", 22), bd=6, justify='center')
+sf.cap1.place(x=600, y=465)
+sf.btn = Button(sf.scr, text="Submit", cursor="hand2", bd=10, font=("cooper black", 20, 'bold'), 
+fg="white",
+bg="#0b1335", command=sf.submit) 
+sf.btn.place(x=700, y=550)
+sf.scr.mainloop()
+def submit(sf): # Calculation part 
+a = v.get()
+if a == z:
+tm.showinfo("Login", "Successfull Captcha") 
+else:
+tm.showinfo("Login", "Unsuccessfull Captcha")
+c = Capctha() 
+c.main()
